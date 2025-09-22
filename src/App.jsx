@@ -9,6 +9,15 @@ function App() {
   const [juegoTerminado, setJuegoTerminado] = useState(false);
   const [mostrarInicio, setMostrarInicio] = useState(true);
   
+useEffect(() => {
+    generarNumeroAleatorio();
+  }, []);
+
+  const generarNumeroAleatorio = () => {
+    const numero = Math.floor(Math.random() * 100) + 1;
+    setNumeroAleatorio(numero);
+  };
+
   return (
     <div className='App'>
       <div className='container'>
