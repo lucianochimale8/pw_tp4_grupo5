@@ -18,6 +18,41 @@ useEffect(() => {
     setNumeroAleatorio(numero);
   };
 
+  const reiniciarJuego = () => {
+    setMostrarInicio(true);
+  };
+
+  if (mostrarInicio) {
+    return (
+      <div className="App">
+        <div className="container">
+          <div className="texto-inicio">Al iniciar</div>
+          <h1>Adivina el número</h1>
+          <p>Ingresa un número entre 1 y 100</p>
+          <p>Cantidad de intentos: 0</p>
+          <input
+            type="number"
+            value={numeroUsuario}
+            onChange={(e) => setNumeroUsuario(e.target.value)}
+            placeholder="Ingresa tu número"
+            className="input-numero"
+          />
+          <div className="botones">
+            <button onClick={verificarNumero} className="btn-verificar">
+              Verificar
+            </button>
+            <button onClick={rendirse} className="btn-rendirse">
+              Me rindo
+            </button>
+          </div>
+          <button onClick={iniciarJuego} className="btn-iniciar">
+            Iniciar Juego
+          </button>
+        </div>
+      </div>
+    );
+  } 
+
   return (
     <div className='App'>
       <div className='container'>
