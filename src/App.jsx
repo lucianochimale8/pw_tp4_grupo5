@@ -1,11 +1,13 @@
 ﻿
 import React from "react";
-import Saludo from "./assets/components/Saludo";
+// import Saludo from "./assets/components/Saludo";
+import Colores from "./assets/components/Colores";
 
 function App() {
     
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
+      <Colores />
       <Saludo nombre={nombre} />
     </div>
   );
