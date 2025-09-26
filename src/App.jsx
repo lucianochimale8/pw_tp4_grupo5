@@ -1,6 +1,7 @@
 ﻿
 import React from "react";
-import Saludo from "./assets/components/Saludo";
+// import Saludo from "./assets/components/Saludo";
+import Colores from "./assets/components/Colores";
 
 function App() {
     
