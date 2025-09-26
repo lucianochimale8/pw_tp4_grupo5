@@ -7,6 +7,7 @@ function App() {
     
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
+      <Colores />
       <Saludo nombre={nombre} />
     </div>
   );

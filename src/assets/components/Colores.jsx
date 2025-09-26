@@ -5,19 +5,16 @@ function Colores(){
     const colores = ['rojo', 'azul', 'verde', 'amarillo', 'morado'];
 
     const [colorDeBotones, setColorDeBotones] = useState(colores);
-  const [mensaje,setMensaje] = useState("");
 
     const manejarClickEnElBoton = () => {
+    const nuevosColores = colorDeBotonones.map(() => {
 
-       const nuevosColores = colorDeBotones.map(
-      () => colores[Math.floor(Math.random() * colores.length)]
-    );
-    // setColorDeBotones(nuevosColores);
-        // const nuevosColores = [...colorDeBotones];
+        const indiceAleatorio = Math.floor(Math.random() * colores.length);
+        return colores[indiceAleatorio];
 
-        setColorDeBotones(nuevosColores.reverse());
+    });
 
-
+    setColorDeBotones(nuevosColores);
     }
 
     return(
@@ -26,13 +23,13 @@ function Colores(){
             <p>Presiona cualquier botón para cambiar los colores. Si dos o mas coinciden, ganas.</p>
         <div>
             {colorDeBotones.map((color, index) => (
-                <botton
+                <button
                 key={index}
                 onClick={manejarClickEnElBoton}
                 style={{backgroundColor: color}}
                 >
                     boton{index+1}
-                </botton>
+                </button>
             ))}
         </div>
         </div>
