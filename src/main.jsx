@@ -7,7 +7,7 @@ import Colores from './assets/components/Colores.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Colores/>
     <Saludo nombre="Cerati" /> 
+    <Colores/>
   </StrictMode>,
 )
