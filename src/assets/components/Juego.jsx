@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import '/src/App.css';
 
 //estructura basica
-function App() {
+function Juego() {
   const [numeroAleatorio, setNumeroAleatorio] = useState(0);
   const [numeroUsuario, setNumeroUsuario] = useState('');
   const [intentos, setIntentos] = useState(0);
@@ -10,15 +10,35 @@ function App() {
   const [juegoTerminado, setJuegoTerminado] = useState(false);
   const [mostrarInicio, setMostrarInicio] = useState(true);
 
-  //funcion para generar el numero
-  useEffect(() => {
-    generarNumeroAleatorio();
-  }, []);
-
   const generarNumeroAleatorio = () => {
     const numero = Math.floor(Math.random() * 100) + 1;
     setNumeroAleatorio(numero);
   };
+  
+
+  //generar el numero dsps de hacer click en Iniciar juego
+  useEffect(() => {
+    if (!mostrarInicio) {
+      const numero = Math.floor(Math.random() * 100) + 1;
+      setNumeroAleatorio(numero);
+      setNumeroUsuario('');
+      setIntentos(0);
+      setMensaje('');
+      setJuegoTerminado(false);
+    }
+  }, [mostrarInicio]);
+
+  useEffect(() => {
+    if (numeroUsuario === '') return;
+
+    const parsed = parseInt(numeroUsuario, 10);
+    if (isNaN(parsed)) {
+      setNumeroUsuario('');
+      return;
+    }
+    if (parsed > 100) setNumeroUsuario('100');
+    if (parsed < 1) setNumeroUsuario('1');
+  }, [numeroUsuario]);
 
   //reinicia
   const iniciarJuego = () => {
@@ -32,10 +52,19 @@ function App() {
 
   //verifica el numero
   const verificarNumero = () => {
-    if (numeroUsuario === '' || juegoTerminado) return;
+    if (juegoTerminado) return;
 
-    const numero = parseInt(numeroUsuario);
-    setIntentos(intentos + 1);
+    const numero = parseInt(numeroUsuario, 10);
+    if (isNaN(numero)) {
+      setMensaje('Por favor ingresá un número válido.');
+      return;
+    }
+    if (numero < 1 || numero > 100) {
+      setMensaje('El número debe ser entre 1 y 100.');
+      return;
+    }
+
+    setIntentos(prev => prev + 1);
 
     if (numero === numeroAleatorio) {
       setMensaje(`¡Felicidades! Adivinaste el número en ${intentos + 1} intentos.`);
@@ -53,33 +82,23 @@ function App() {
     setJuegoTerminado(true);
   };
 
+  //vuelve a iniciar
   const reiniciarJuego = () => {
     setMostrarInicio(true);
+    setNumeroUsuario('');
+    setIntentos(0);
+    setMensaje('');
+    setJuegoTerminado(false);
+    setNumeroAleatorio(0);
   };
 
   if (mostrarInicio) {
     return (
-      <div className="App">
+      <div className="Juego">
         <div className="container">
-          <div className="texto-inicio">Al iniciar</div>
           <h1>Adivina el número</h1>
-          <p>Ingresa un número entre 1 y 100</p>
+          <p>Ingresa un número entre 1 y 100.</p>
           <p>Cantidad de intentos: 0</p>
-          <input
-            type="number"
-            value={numeroUsuario}
-            onChange={(e) => setNumeroUsuario(e.target.value)}
-            placeholder="Ingresa tu número"
-            className="input-numero"
-          />
-          <div className="botones">
-            <button onClick={verificarNumero} className="btn-verificar">
-              Verificar
-            </button>
-            <button onClick={rendirse} className="btn-rendirse">
-              Me rindo
-            </button>
-          </div>
           <button onClick={iniciarJuego} className="btn-iniciar">
             Iniciar Juego
           </button>
@@ -89,49 +108,52 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="Juego">
       <div className="container">
-        <div className="texto-inicio">Al iniciar</div>
         <h1>Adivina el número</h1>
         <p>Ingresa un número entre 1 y 100</p>
         <p>Cantidad de intentos: {intentos}</p>
+
         <input
           type="number"
+          min="1"
+          max="100"
           value={numeroUsuario}
           onChange={(e) => setNumeroUsuario(e.target.value)}
           placeholder="Ingresa tu número"
           className="input-numero"
           disabled={juegoTerminado}
         />
+
         <div className="botones">
-          <button 
-            onClick={verificarNumero} 
+          <button
+            onClick={verificarNumero}
             className="btn-verificar"
             disabled={juegoTerminado}
           >
             Verificar
           </button>
-          <button 
-            onClick={rendirse} 
+          <button
+            onClick={rendirse}
             className="btn-rendirse"
             disabled={juegoTerminado}
           >
             Me rindo
           </button>
         </div>
-        {mensaje && (
-          <div className="mensaje">
-            {mensaje}
-          </div>
-        )}
+
+        {mensaje && <div className="mensaje">{mensaje}</div>}
+
         {juegoTerminado && (
-          <button onClick={reiniciarJuego} className="btn-reiniciar">
-            Jugar de nuevo
-          </button>
+          <div style={{ marginTop: '12px' }}>
+            <button onClick={reiniciarJuego} className="btn-reiniciar">
+              Volver al inicio
+            </button>
+          </div>
         )}
       </div>
     </div>
   );
 }
 
-export default App;
+export default Juego;
