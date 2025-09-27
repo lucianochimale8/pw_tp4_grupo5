@@ -1,17 +1,20 @@
-import React from "react";
+/*import React from "react";*/
 import { useState } from "react";
 
 function Colores(){
-    const colores = ['rojo', 'azul', 'verde', 'amarillo', 'morado'];
+    const colores = ['#ff0000ff', '#2600ffff', '#00ff15ff', '#fbff00ff', '#6700a3ff'];
 
     const [colorDeBotones, setColorDeBotones] = useState(colores);
 
-    const manejarClickEnElBoton = () => {
-    const nuevosColores = colorDeBotonones.map(() => {
+    const manejarClickEnElBoton = (index) => {
 
+        /*const nuevosColores = [...colorDeBotones];
         const indiceAleatorio = Math.floor(Math.random() * colores.length);
-        return colores[indiceAleatorio];
-
+        nuevosColores[index] = colores[indiceAleatorio];
+        setColorDeBotones(nuevosColores);*/
+        const nuevosColores = colorDeBotones.map(() => {
+      const indiceAleatorio = Math.floor(Math.random() * colores.length);
+      return colores[indiceAleatorio];
     });
 
     setColorDeBotones(nuevosColores);
@@ -25,7 +28,7 @@ function Colores(){
             {colorDeBotones.map((color, index) => (
                 <button
                 key={index}
-                onClick={manejarClickEnElBoton}
+                onClick={() => manejarClickEnElBoton(index)}
                 style={{backgroundColor: color}}
                 >
                     boton{index+1}
