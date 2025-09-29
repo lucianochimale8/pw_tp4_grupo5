@@ -70,9 +70,9 @@ function Juego() {
       setMensaje(`¡Felicidades! Adivinaste el número en ${intentos + 1} intentos.`);
       setJuegoTerminado(true);
     } else if (numero < numeroAleatorio) {
-      setMensaje('El número es muy bajo. Intenta con uno más alto.');
+      setMensaje(`El número ${numero} es muy bajo. Intenta con uno más alto.`);
     } else {
-      setMensaje('El número es muy alto. Intenta con uno más bajo.');
+      setMensaje(`El número ${numero} es muy alto. Intenta con uno más bajo.`);
     }
   };
 
