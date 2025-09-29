@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function Colores(){
     // arreglo de colores
-    const colores = ['#ff0000ff', '#2600ffff', '#00ff15ff', '#fbff00ff', '#6700a3ff'];
+    const colores = ['#ff0000ff', '#2600ffff', '#06b915ff', '#6700a3ff'];
     // useStates
     const [colorDeBotones, setColorDeBotones] = useState(colores);
     const [mensaje, setMensaje] = useState("");

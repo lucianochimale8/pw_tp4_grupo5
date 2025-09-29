@@ -1,14 +1,19 @@
 ﻿
 import React from "react";
-// import Saludo from "./assets/components/Saludo";
-import Colores from "./assets/components/Colores";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import Saludo from './assets/components/Saludo.jsx'
+import Colores from './assets/components/Colores.jsx'
+import Juego from './assets/components/Juego.jsx'
 
 function App() {
     
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
-      <Colores />
-      <Saludo nombre={nombre} />
+      <Saludo nombre="Cerati" />
+      <Juego/> 
+      <Colores/>
     </div>
   );
 }
