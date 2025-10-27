@@ -29,7 +29,7 @@ function Colores(){
     return(
         <div>
             <h1>Juego de Colores</h1>
-            <p>Presiona cualquier botón para cambiar los colores. Si dos o mas coinciden, ganas.</p>
+            <p>Presiona cualquier botón para cambiar los colores. Si todos coinciden, ganas.</p>
             <div>
                 {colorDeBotones.map((color, index) => (
                 <button
